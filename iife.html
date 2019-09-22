@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var foo = 1;
+    // 'use strict';
+    // 严格模式 Uncaught TypeError: Assignment to constant variable
+    (function foo() {
+      foo = 2;
+      console.log('inner:', foo);
+    }());
+    console.log('outer:', foo);
+
+    var result = (function() {
+      var str1 = 'hello';
+      str2 = 'world';
+      return str1;
+    })();
+    // console.log(str1);
+    console.log(str2);
+    console.log(result);
+
+    function fn() {
+      fn = 3;
+      console.log('inner:', fn);
+    }
+    fn();
+    console.log('outer:', fn);
+
+    var bool1 = Boolean(false);
+    var bool2 = Boolean('');
+    var bool3 = Boolean(NaN);
+    var bool4 = Boolean(undefined);
+    var bool5 = Boolean(null);
+    var bool6 = Boolean(0);
+    console.log(bool1, bool2, bool3, bool4, bool5, bool6);
+    console.log(parseFloat('123.4abc'))
+    console.log(parseInt('123.4abc', 3)) // 5 parseint('12', 3)
+    console.log(Number('123.4abc'))
+    console.log(+'123.4abc');
+
+    var math = {
+      factorial: function a() {
+        // console.log(factorial);
+        console.log(arguments.callee);
+        console.log(a);
+        console.log(a === arguments.callee);
+      }
+    };
+    math.factorial();
+
+    var a = function () {}
+    console.log(a.name);
+
+    // document.documentElement.addEventListener('click', (e) => {
+    //   console.log(e);
+    // })
+
+    var func = function() {};
+    var instance = new func();
+    console.log(instance.hasOwnProperty('constructor'));
+    console.log(instance.constructor);
+
+    window.onkeypress = function(e) {
+      console.log(e);
+    }
+  </script>
+</body>
+</html>

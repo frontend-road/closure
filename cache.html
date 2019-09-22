@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var cache = (function(global, factory, name) {
+      return global[name] = factory.call(global)
+    })(this, function() {
+      var __E_TYPES__ = {
+        MEMORY: 'MEMORY'
+      }
+
+      var __ENGINES__ = {
+        [__MEMORY__.MEMORY]: {
+          init: function() {},
+          get: function(key) {
+            console.log('get 默认安装的引擎')
+          },
+          set: function(key, data) {
+            console.log('set 默认安装的引擎')
+          }
+        }
+      }
+
+      var __CACHE__ = {
+        install: function() {},
+        uninstall: function() {},
+        get: function(type, key) {
+          return __ENGINES__[type].get(key)
+        },
+        set: function() {
+          __ENGINES__[type].set(key, data)
+        }
+      }
+
+      // return __CACHE__
+      return {
+        getInstance: function() {
+          return __CACHE__
+        }
+      }
+    }, 'MyCache');
+    console.log(MyCache.getInstance())
+  </script>
+</body>
+</html>
